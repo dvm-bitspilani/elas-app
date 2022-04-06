@@ -42,7 +42,7 @@ export default function QuizQuestion() {
             ],
         },
     ];
-    const [question, setQuestion] = useState({});
+    const [question, setQuestion] = useState([]);
 
     useEffect(async () => {
         await fetch("https://bits-apogee.org/elasquiz/get_question", {
@@ -54,13 +54,18 @@ export default function QuizQuestion() {
                 return response.json();
             })
             .then(function (result) {
-                console.log(result);
-                setQuestion(result);
-                console.log("DATE", result.start_date_time.split("-"));
-                console.log(new Date("2022-04-05T21:29:38.770").getTime());
-                // setQuestionsArr(result);
-            });
-    }, []);
+                if(!result.error){
+                    console.log(result);
+                    setQuestion(result);
+                    console.log("DATE", result.start_date_time.split("-"));
+                    console.log(new Date("2022-04-05T21:29:38.770").getTime());
+                    // setQuestionsArr(result);
+                }
+                else{
+                    alert(result.error);
+                }
+            }).catch((err) => console.log("API ERROR", err));
+    }, [setQuestion]);
 
     return (
         <div className="QuizQuestionWrapper">
@@ -71,7 +76,7 @@ export default function QuizQuestion() {
                 </div>
             </div>
             <div class="content">
-            {question.question}
+                {question.question}
             </div>
             {/* <div class="options">
                 <div class="opt selected">
@@ -87,7 +92,7 @@ export default function QuizQuestion() {
                     Enter option 4 here
                 </div>
             </div> */}
-            <Options options={question.options}/>
+            <Options options={question.options} />
             <div class="submit">
                 Submit
             </div>

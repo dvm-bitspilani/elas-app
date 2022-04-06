@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import "../css/Option.css"
-export default function Option(props){
+export default function Option(props) {
     const [start, setStart] = useState(true);
     const [standby, setStandby] = useState(true);
     const [score, setScore] = useState(0);
@@ -17,13 +17,13 @@ export default function Option(props){
         <div className="OptionWrapper">
             <div className="options">
                 <div className="opt">
-                {props.options.map((answerOption) => (
+                    {/* {props.options.map((answerOption) => (
                             <button
                                 onClick={() => handleAnswerOptionClick(answerOption.is_correct)}
                             >
                                 {answerOption.content}
                             </button>
-                        ))}
+                        ))} */}
                 </div>
             </div>
         </div>
