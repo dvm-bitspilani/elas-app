@@ -1,6 +1,28 @@
 import React from 'react';
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../css/QuizTimer.css"
 export default function QuizTimer() {
+    let { jwt } = useParams();
+    useEffect(async () => {
+        await fetch("https://bits-apogee.org/elasquiz/member", {
+            headers: { "content-type": "application/json" },
+            method: "POST",
+            body: JSON.stringify({ 
+                jwt: jwt
+            }),
+            mode: "cors",
+        })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (result) {
+                console.log(result);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
     function secondsToHms(d) {
         d = Number(d);
         var h = Math.floor(d / 3600);
@@ -12,9 +34,7 @@ export default function QuizTimer() {
         var sDisplay = s > 0 ? s + (s == 1 ? " : " : "") : "";
         return hDisplay + mDisplay + sDisplay; 
     }
-    
     let TimeLeft = secondsToHms(3673);
-
     return (
         <div className="QuizTimerWrapper">
             <div class="top">

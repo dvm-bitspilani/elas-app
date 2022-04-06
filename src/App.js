@@ -15,13 +15,13 @@ export default function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/Quiz" element={<Quiz />} />
         <Route path="/NotLoggedIn" element={<NotLoggedIn />} />
         <Route path="/Protected" element={<Protected />} />
         <Route path="/SubmitPage" element={<SubmitPage />} />
         <Route path="/LivePage" element={<LivePage />} />
-        <Route path="/QuizTimer" element={<QuizTimer />} />
+        <Route path="/:jwt" element={<QuizTimer />} />
 
       </Routes>
     </div>

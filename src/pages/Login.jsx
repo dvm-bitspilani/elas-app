@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 function Login() {
+    let { jwt } = useParams();
     useEffect(() => {
 
         localStorage.setItem("access", "false");
+        console.log("JWT", jwt);
         alert(document.cookie);
     }, [])
     let navigate = useNavigate();
