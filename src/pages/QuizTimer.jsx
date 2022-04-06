@@ -1,16 +1,17 @@
 import React from 'react';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../css/QuizTimer.css"
 export default function QuizTimer() {
     let { jwt } = useParams();
+    // console.log("This is jwt",jwt)
+    let navigate = useNavigate();
+    
     useEffect(async () => {
-        await fetch("https://bits-apogee.org/elasquiz/member", {
-            headers: { "content-type": "application/json" },
-            method: "POST",
-            body: JSON.stringify({ 
-                jwt: jwt
-            }),
+        await fetch("https://bits-apogee.org/elasquiz/create_member", {
+            headers: { "content-type": "application/json",
+            'Authorization': `Bearer ${jwt}` },
+            method: "GET",
             mode: "cors",
         })
             .then(function (response) {
