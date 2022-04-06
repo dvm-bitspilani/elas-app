@@ -3,7 +3,80 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/QuizQuestion.css'
 import Options from "../Components/Option.jsx"
+import QuestionTimer from "../Components/QuestionTimer.jsx"
+
+
 export default function QuizQuestion() {
+    let navigate = useNavigate();
+    const [start, setStart] = useState(true);
+    const [selectedOption, setSelectedOption] = useState(1);
+    const [questionTimeRemaining, setQuestionTimeRemaining] = useState(0);
+    const [initialTime, setInitialTime] = useState(new Date());
+    const [isNavigate, setIsNavigate] = useState(false);
+
+    useEffect(() => {
+
+        if (isNavigate) {
+            navigate('/SubmitPage')
+        }
+    }, [isNavigate, navigate])
+
+    const handleAnswerOptionClick = (index) => {
+        for (var i = 1; i < options.length + 1; i++) {
+            document.getElementById(`button${i}`).classList.remove("selected");
+        }
+        document.getElementById(`button${index}`).classList.add("selected");
+        console.log("option chosen", index);
+        setSelectedOption(index);
+    };
+    function secondsToHms(d) {
+        d = Number(d);
+        var h = Math.floor(d / 3600);
+        var m = Math.floor(d % 3600 / 60);
+        var s = Math.floor(d % 3600 % 60);
+
+        var hDisplay = h > 0 ? h + (h === 1 ? " : " : " : ") : "";
+        var mDisplay = m > 0 ? m + (m === 1 ? " : " : " : ") : "";
+        var sDisplay = s > 0 ? s + (s === 1 ? " : " : "") : "";
+        return hDisplay + mDisplay + sDisplay;
+    }
+    const handleSubmit = async () => {
+        let currentTime = new Date();
+        let time_taken = currentTime.getSeconds() - initialTime.getSeconds();
+        const submission = {
+            option_id: selectedOption,
+            question_id: question.question_id,
+            time_taken: time_taken
+        }
+        console.log(submission);
+        console.log(currentTime, initialTime, time_taken);
+
+        await fetch("https://bits-apogee.org/elasquiz/post_answer/", {
+            headers: { "content-type": "application/json" },
+            method: "POST",
+            body: JSON.stringify(submission),
+            mode: "cors",
+        })
+            .then(function (response) {
+                console.log("hi");
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error(response.statusText);
+            })
+            .then(function (result) {
+                if (!result.error) {
+                    console.log(result);
+                    setIsNavigate(prev => prev = !prev);
+                }
+                else {
+                    alert(result.error);
+                }
+            }).catch((err) => {
+                console.log(err);
+                setIsNavigate(prev => prev = !prev);
+            })
+    }
     const questions = [
         {
             questionText: "What is the capital of France?",
@@ -43,9 +116,13 @@ export default function QuizQuestion() {
         },
     ];
     const [question, setQuestion] = useState([]);
-
-    useEffect(async () => {
-        await fetch("https://bits-apogee.org/elasquiz/get_question", {
+    const [options, setOptions] = useState([]);
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + questionTimeRemaining); // 10 minutes timer
+    const [questionExpiry, setQuestionExpiry] = useState(time);
+    useEffect(() => {
+        (async () => {
+            await fetch("https://bits-apogee.org/elasquiz/get_question", {
             headers: { "content-type": "application/json" },
             method: "GET",
             mode: "cors",
@@ -54,28 +131,74 @@ export default function QuizQuestion() {
                 return response.json();
             })
             .then(function (result) {
-                if(!result.error){
+                if (!result.error) {
                     console.log(result);
                     setQuestion(result);
+                    console.log(result.options)
+                    setOptions(result.options)
                     console.log("DATE", result.start_date_time.split("-"));
                     console.log(new Date("2022-04-05T21:29:38.770").getTime());
+                    setQuestionTimeRemaining(result.attempt_time);
+
+
                     // setQuestionsArr(result);
                 }
-                else{
+                else {
                     alert(result.error);
                 }
-            }).catch((err) => console.log("API ERROR", err));
-    }, [setQuestion]);
+            }).catch((err) => {
+                console.log("API ERROR", err);
+                const staticQuestion = [
+                    {
+                        question: "Static Question",
+                        question_id: "1",
+                        image_url: "test",
+                        attempt_time: 5,
+                    }
+                ]
+                const staticOptions = [
+                    {
+                        option_id: 1,
+                        content: "Option1"
+                    },
+                    {
+                        option_id: 2,
+                        content: "Option2"
+                    },
+                    {
+                        option_id: 3,
+                        content: "Option3"
+                    },
+                    {
+                        option_id: 4,
+                        content: "Option4"
+                    },
+                ]
+                setOptions(staticOptions);
+                setQuestion(staticQuestion[0]);
+                setQuestionTimeRemaining(staticQuestion[0].attempt_time);
+                time.setSeconds(time.getSeconds() + staticQuestion[0].attempt_time)
+                setQuestionExpiry(time);
+                console.log()
+                console.log(questionTimeRemaining);
+                // console.log(options);
+
+            });
+        })()
+        
+    }, [setQuestion, setOptions, setQuestionTimeRemaining]);
+
 
     return (
         <div className="QuizQuestionWrapper">
             <div class="top">
                 Q1
-                <div class="time">
-                    08:05
-                </div>
+                <QuestionTimer onTimerExpiry={handleSubmit} expiryTimestamp={questionExpiry} />
             </div>
             <div class="content">
+                <div className="img">
+                    <img src={question.image_url} alt="Image" srcset="" />
+                </div>
                 {question.question}
             </div>
             {/* <div class="options">
@@ -92,8 +215,8 @@ export default function QuizQuestion() {
                     Enter option 4 here
                 </div>
             </div> */}
-            <Options options={question.options} />
-            <div class="submit">
+            <Options options={options} handleAnswerOptionClick={handleAnswerOptionClick} />
+            <div class="submit" onClick={handleSubmit}>
                 Submit
             </div>
         </div>

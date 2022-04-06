@@ -1,12 +1,13 @@
 import React from 'react';
+import BackButton from "../Components/BackButton.jsx"
 import "../css/submitPage.css"
 export default function SubmitPage() {
     return (
         <div className="SubmitPageWrapper">
             <div class="head">
-                <div class="left"><img src={require("../assets/Vector.png")} alt="" /></div>
                 <div class="title">Quiz</div>
-                <div id="rightArrow" class="left"><img src={require("../assets/Vector.png")} alt="" /></div>
+                {/* <div class="left"></div>
+                <div id="rightArrow" class="left"></div> */}
             </div>
             <div class="content">
                 <div class="text">Thanks for submitting</div>
