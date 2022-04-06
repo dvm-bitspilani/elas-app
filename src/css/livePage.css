@@ -1,0 +1,104 @@
+@font-face {
+    font-family: "SF Pro Text";
+    src: local("SF Pro Text"),
+      url("../assets/SFProText-Regular.ttf") format("truetype");
+    font-weight: normal;
+  }
+  
+  * {
+    padding: 0;
+    margin: 0;
+    font-family: "SF Pro Text";
+    box-sizing: border-box;
+    color: white;
+  }
+  body {
+    height: 100vh;
+    background: radial-gradient(
+      216.76% 98.81% at 100% 1.19%,
+      #1b1e35 0%,
+      #1a1d3d 6.16%,
+      #07091b 29.52%,
+      #04050e 100%
+    );
+  }
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5vh 5vw 20vh 5vw;
+  }
+  .left {
+    padding: 1rem;
+    width: max-content;
+    background-color: #18192c;
+    border-radius: 1rem;
+  }
+  .title {
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    letter-spacing: -0.4px;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .text {
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    letter-spacing: -0.4px;
+  }
+  .button {
+    background-color: #0c0928;
+    border: 1px solid rgb(36, 23, 93);
+    border-radius: 5px;
+    padding: 1.5rem 5rem;
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 2rem;
+    text-align: center;
+    letter-spacing: -0.408px;
+  }
+  .bgImg {
+    width: 100vw;
+  }
+  .purpleButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .start {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    align-self: center;
+    letter-spacing: -0.408px;
+    font-weight: 600;
+    margin: 2rem 0;
+    padding: 1.5rem 5rem;
+    background: linear-gradient(315deg, #4624c2 0%, #7f5bff 100%);
+    box-shadow: 0px 10px 40px rgba(113, 75, 255, 0.22),
+      inset 0px -3px 10px rgba(0, 0, 0, 0.37),
+      inset 3px 1px 15px rgba(255, 255, 255, 0.5);
+    border-radius: 1rem;
+  }
+
+  .LivePageWrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  #rightArrow {
+      visibility: hidden;
+  }

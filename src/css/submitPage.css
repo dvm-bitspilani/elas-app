@@ -1,0 +1,72 @@
+@font-face {
+    font-family: "SF Pro Text";
+    src: local("SF Pro Text"),
+      url("../assets/SFProText-Regular.ttf") format("truetype");
+    font-weight: normal;
+  }
+  .SubmitPageWrapper {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  
+  * {
+    padding: 0;
+    margin: 0;
+    font-family: "SF Pro Text";
+    box-sizing: border-box;
+    color: white;
+  }
+  body {
+    height: 100vh;
+    background: radial-gradient(
+      216.76% 98.81% at 100% 1.19%,
+      #1b1e35 0%,
+      #1a1d3d 6.16%,
+      #07091b 29.52%,
+      #04050e 100%
+    );
+  }
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5vh 5vw 20vh 5vw;
+  }
+  .left {
+    padding: 1rem;
+    cursor: pointer;
+    width: max-content;
+    background-color: #18192c;
+    border-radius: 1rem;
+  }
+  .title {
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    letter-spacing: -0.4px;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .text {
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    letter-spacing: -0.4px;
+  }
+  .bgImg {
+    width: 100vw;
+  }
+  #rightArrow {
+      visibility: hidden;
+  }

@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'SF Pro';
+    src: url(../assets/SF-Pro-Text-Semibold.otf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+body {
+    background: radial-gradient(216.76% 98.81% at 100% 1.19%, #1B1E35 0%, #1A1D3D 6.16%, #07091B 29.52%, #04050E 100%) no-repeat;
+    font-family: 'SF Pro';
+}
+
+.top {
+    font-size: 1.4em;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5em;
+    align-items: center;
+    width: 90%;
+    margin: 1.5em auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 5em; */
+}
+.content h2{
+    font-size: 1.5em;
+}
+
+.content h3 {
+    background: #0C0928;
+    border-radius: 5px;
+    padding: 25px 30px;
+    font-size: 3em;
+    margin-top: 0.5em;
+}
+/* 18192C */
+.arrow {
+    background: #18192C;
+    border-radius: 20px;
+    width: 50px;
+    height: 50px;
+    padding: 15px;
+}
+
+.arrow2 {
+    visibility: hidden;
+    border-radius: 20px;
+    width: 50px;
+    height: 50px;
+    padding: 15px;
+}
+.bg-image{
+    margin-top: 2em;
+    width: 10em;
+    height: 10em;
+}
+.QuizTimerWrapper {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
