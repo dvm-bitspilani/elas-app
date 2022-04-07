@@ -11,6 +11,7 @@ import SubmitPage from "./pages/SubmitPage.jsx"
 import LivePage from "./pages/LivePage.jsx"
 import QuizTimer from "./pages/QuizTimer.jsx"
 import QuizQuestion from "./pages/QuizQuestion.jsx"
+import QuizOver from "./pages/QuizOver.jsx"
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/SubmitPage" element={<SubmitPage />} />
         <Route path="/LivePage" element={<LivePage />} />
         <Route path="/QuizQuestion" exact element={<QuizQuestion />} />
+        <Route path="/QuizOver" exact element={<QuizOver />} />
         <Route path="/:jwt" element={<QuizTimer />} />
 
       </Routes>
