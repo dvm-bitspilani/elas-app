@@ -41,6 +41,7 @@ export default function QuizQuestion() {
         return hDisplay + mDisplay + sDisplay;
     }
     const handleSubmit = async () => {
+        // console.log(TimeRemaining)
         let currentTime = new Date();
         let time_taken = currentTime.getSeconds() - initialTime.getSeconds();
         const submission = {
@@ -50,9 +51,9 @@ export default function QuizQuestion() {
         }
         console.log(submission);
         console.log(currentTime, initialTime, time_taken);
-
-        await fetch("https://bits-apogee.org/elasquiz/post_answer/", {
-            headers: { "content-type": "application/json" },
+        let jwt = localStorage.getItem('jwt')
+        await fetch("https://test.bits-apogee.org/elasquiz/post_answer/", {
+            headers: { "content-type": "application/json", 'Authorization': `Bearer ${jwt}` },
             method: "POST",
             body: JSON.stringify(submission),
             mode: "cors",
@@ -67,6 +68,9 @@ export default function QuizQuestion() {
             .then(function (result) {
                 if (!result.error) {
                     console.log(result);
+                    if (result.message) {
+                        alert(result.message);
+                    }
                     setIsNavigate(prev => prev = !prev);
                 }
                 else {
@@ -122,70 +126,75 @@ export default function QuizQuestion() {
     const [questionExpiry, setQuestionExpiry] = useState(time);
     useEffect(() => {
         (async () => {
-            await fetch("https://bits-apogee.org/elasquiz/get_question", {
-            headers: { "content-type": "application/json" },
-            method: "GET",
-            mode: "cors",
-        })
-            .then(function (response) {
-                return response.json();
+            await fetch("https://test.bits-apogee.org/elasquiz/get_question", {
+                headers: { "content-type": "application/json" },
+                method: "GET",
+                mode: "cors",
             })
-            .then(function (result) {
-                if (!result.error) {
-                    console.log(result);
-                    setQuestion(result);
-                    console.log(result.options)
-                    setOptions(result.options)
-                    console.log("DATE", result.start_date_time.split("-"));
-                    console.log(new Date("2022-04-05T21:29:38.770").getTime());
-                    setQuestionTimeRemaining(result.attempt_time);
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (result) {
+                    if (!result.error) {
+                        console.log(result);
+                        setQuestion(result);
+                        console.log(result.options)
+                        setOptions(result.options)
+                        console.log(parseInt(result.attempt_time));
+                        // console.log("DATE", result.start_date_time.split("-"));
+                        // console.log(new Date("2022-04-05T21:29:38.770").getTime());
+                        time.setSeconds(time.getSeconds() + parseInt(result.attempt_time));
+                        console.log(time);
+                        setQuestionExpiry(time);
+                        // setQuestionExpiry(result.attempt_time);
 
 
-                    // setQuestionsArr(result);
-                }
-                else {
-                    alert(result.error);
-                }
-            }).catch((err) => {
-                console.log("API ERROR", err);
-                const staticQuestion = [
-                    {
-                        question: "Static Question",
-                        question_id: "1",
-                        image_url: "test",
-                        attempt_time: 5,
+                        // setQuestionsArr(result);
                     }
-                ]
-                const staticOptions = [
-                    {
-                        option_id: 1,
-                        content: "Option1"
-                    },
-                    {
-                        option_id: 2,
-                        content: "Option2"
-                    },
-                    {
-                        option_id: 3,
-                        content: "Option3"
-                    },
-                    {
-                        option_id: 4,
-                        content: "Option4"
-                    },
-                ]
-                setOptions(staticOptions);
-                setQuestion(staticQuestion[0]);
-                setQuestionTimeRemaining(staticQuestion[0].attempt_time);
-                time.setSeconds(time.getSeconds() + staticQuestion[0].attempt_time)
-                setQuestionExpiry(time);
-                console.log()
-                console.log(questionTimeRemaining);
-                // console.log(options);
+                    else {
+                        alert(result.error);
 
-            });
+                    }
+                }).catch((err) => {
+                    // console.log("API ERROR", err);
+                    // const staticQuestion = [
+                    //     {
+                    //         question: "Static Question",
+                    //         question_id: "1",
+                    //         image_url: "https://www.poynter.org/wp-content/uploads/2021/09/shutterstock_1563012205.png",
+                    //         attempt_time: 5,
+                    //     }
+                    // ]
+                    // const staticOptions = [
+                    //     {
+                    //         option_id: 1,
+                    //         content: "Option1"
+                    //     },
+                    //     {
+                    //         option_id: 2,
+                    //         content: "Option2"
+                    //     },
+                    //     {
+                    //         option_id: 3,
+                    //         content: "Option3"
+                    //     },
+                    //     {
+                    //         option_id: 4,
+                    //         content: "Option4"
+                    //     },
+                    // ]
+                    // setOptions(staticOptions);
+                    // setQuestion(staticQuestion[0]);
+                    // setQuestionTimeRemaining(staticQuestion[0].attempt_time);
+                    // time.setSeconds(time.getSeconds() + staticQuestion[0].attempt_time)
+                    // setQuestionExpiry(time);
+                    // console.log()
+                    // console.log(questionTimeRemaining);
+                    // // console.log(options);
+
+                });
         })()
-        
+
     }, [setQuestion, setOptions, setQuestionTimeRemaining]);
 
 
@@ -197,7 +206,7 @@ export default function QuizQuestion() {
             </div>
             <div class="content">
                 <div className="img">
-                    <img src={question.image_url} alt="Image" srcset="" />
+                    <img id="questionImage" src={question.image_url} alt="Image" srcset="" />
                 </div>
                 {question.question}
             </div>

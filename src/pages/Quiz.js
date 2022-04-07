@@ -56,7 +56,7 @@ export default function Quiz() {
     const [question, setQuestion] = useState({});
 
     useEffect(async () => {
-        await fetch("https://bits-apogee.org/elasquiz/get_question", {
+        await fetch("https://test.bits-apogee.org/elasquiz/get_question", {
             headers: { "content-type": "application/json" },
             method: "GET",
             mode: "cors",

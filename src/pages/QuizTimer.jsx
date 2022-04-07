@@ -5,7 +5,9 @@ import QuizTimerComponent from "../Components/QuizTimerComponent.jsx"
 import "../css/QuizTimer.css"
 export default function QuizTimer() {
     let { jwt } = useParams();
+    localStorage.setItem("jwt", `${jwt}`);
     const [showStartQuiz, setShowStartQuiz] = useState(false);
+    const [isNavigateError, setIsNavigateError] = useState(false);
     const time = new Date();
     time.setSeconds(time.getSeconds() + 0); // 10 minutes timer
     const [TimeRemaining, setTimeRemaining] = useState(time);
@@ -19,8 +21,13 @@ export default function QuizTimer() {
         navigate('/QuizQuestion');
     }
     useEffect(() => {
+        if(isNavigateError){
+            navigate('/NotLoggedIn');
+        }
+
+
         (async () => {
-            await fetch("https://bits-apogee.org/elasquiz/create_member", {
+            await fetch("https://test.bits-apogee.org/elasquiz/create_member", {
                 headers: {
                     "content-type": "application/json",
                     'Authorization': `Bearer ${jwt}`
@@ -36,8 +43,10 @@ export default function QuizTimer() {
                 })
                 .catch(error => {
                     console.log(error);
+                    setIsNavigateError(prev => prev = !prev)
+
                 });
-            await fetch("https://bits-apogee.org/elasquiz/get_question", {
+            await fetch("https://test.bits-apogee.org/elasquiz/get_question", {
                 headers: { "content-type": "application/json" },
                 method: "GET",
                 mode: "cors",
@@ -47,16 +56,17 @@ export default function QuizTimer() {
                 })
                 .then(function (result) {
                     if (result.error) {
+                        alert(result.error);
                         setTimeRemaining(result.time_remaining);
                     }
                     else {
-                        setTimeRemaining(0);
+                        setShowStartQuiz(prev => prev = !prev);
                     }
                 })
                 .catch((err) => {
                     console.log(err);
-                    time.setSeconds(time.getSeconds() + 5)
-                    setTimeRemaining(time);
+                    // time.setSeconds(time.getSeconds() + 5)
+                    // setTimeRemaining(time);
                 });
             console.log(TimeRemaining);
 
@@ -64,7 +74,7 @@ export default function QuizTimer() {
 
 
 
-    }, [setTimeRemaining]);
+    }, [setTimeRemaining,isNavigateError]);
     function secondsToHms(d) {
         d = Number(d);
         var h = Math.floor(d / 3600);
@@ -93,18 +103,18 @@ export default function QuizTimer() {
                 </svg> */}
             </div>
             <div class="content">
-                {showStartQuiz ? 
-                <div className="QuizHeading">
-                    <h2>The Quiz is</h2>
-                    <div className="TimerQuiz">
-                        LIVE
+                {showStartQuiz ?
+                    <div className="QuizHeading">
+                        <h2>The Quiz is</h2>
+                        <div className="TimerQuiz">
+                            LIVE
+                        </div>
                     </div>
-                </div>
-                :
-                <div className="QuizHeading">
-                    <h2>The quiz will start in:</h2>
-                    <QuizTimerComponent onTimerExpiry={handleExpiry} expiryTimestamp={TimeRemaining} />
-                </div>
+                    :
+                    <div className="QuizHeading">
+                        <h2>The quiz will start in:</h2>
+                        <QuizTimerComponent onTimerExpiry={handleExpiry} expiryTimestamp={TimeRemaining} />
+                    </div>
                 }
                 <svg class="bg-image" xmlns="http://www.w3.org/2000/svg" width="248" height="248" viewBox="0 0 248 248" fill="none">
                     <g opacity="0.9">

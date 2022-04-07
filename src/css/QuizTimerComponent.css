@@ -1,6 +1,10 @@
 .TimerQuiz {
-    font-size: 42px;
+    font-size: 32px;
     font-weight: 800;
+    /* background: red; */
+    background: #7f7f7f29;
+    padding: 16px;
+    border-radius: 6px;
 }
 .QuizHeading {
     display: contents;
