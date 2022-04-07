@@ -1,0 +1,77 @@
+.Leaderboard {
+  font-family: "SF Pro";
+}
+
+.Leaderboard-heading {
+  padding-top: 20px;
+  font-size: 4rem;
+  text-align: center;
+}
+
+.Leaderboard-leaders {
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-around;
+  height: 45vh;
+}
+
+.Leaderboard-rank-cont {
+  box-sizing: border-box;
+  display: flex;
+  width: 40vw;
+  justify-content: space-between;
+  padding: 15px 20px;
+  margin: 10px auto;
+  background-image: linear-gradient(to bottom right, #7F5BFF, #4624C2);
+  border-radius: 8px;
+}
+
+.Leaderboard-entries {
+  overflow-y: scroll;
+  height: 27vh;
+}
+
+.Leaderboard-entries::-webkit-scrollbar {
+  background: transparent;
+  width: 0;
+}
+
+@media (max-width: 1200px) {
+  .Leaderboard-heading {
+    font-size: 3rem;
+  }
+
+  .Leaderboard-rank-cont {
+    width: 50vw;
+  }
+}
+
+@media (max-width: 950px) and (min-height: 1000px) {
+  .Leaderboard-leaders {
+    height: 30vh;
+  }
+
+  .Leaderboard-entries {
+    height: 50vh;
+  }
+}
+
+@media (max-width: 700px) {
+  .Leaderboard-heading {
+    font-size: 2rem;
+  }
+
+  .Leaderboard-rank-cont {
+    width: 80vw;
+  }
+}
+
+@media (min-height: 700px) and (max-width: 700px) {
+  .Leaderboard-leaders {
+    height: 30vh;
+  }
+
+  .Leaderboard-entries {
+    height: 50vh;
+  }
+}

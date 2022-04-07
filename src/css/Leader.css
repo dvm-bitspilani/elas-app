@@ -1,0 +1,119 @@
+.Leader {
+  width: min-content;
+}
+
+#Leader-1 {
+  order: 2;
+}
+
+#Leader-2 {
+  order: 1;
+  align-self: end;
+}
+
+#Leader-3 {
+  order: 3;
+  align-self: end;
+}
+
+.Leader-img-cont {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.Leader-crown {
+  position: absolute;
+  top: -22%;
+  left: 36%;
+  width: 50px;
+}
+
+.Leader-img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid white;
+}
+
+#Leader-1 .Leader-img {
+  width: 180px;
+  height: 180px;
+}
+
+.Leader-rank {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-family: "SF Pro";
+  position: absolute;
+  bottom: -5%;
+  left: 42%;
+}
+
+.Leader-name {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 1200px) {
+  .Leader-crown {
+    position: absolute;
+    top: -19%;
+    left: 38.5%;
+    width: 40px;
+  }
+
+  #Leader-1 .Leader-img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .Leader-img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .Leader-rank {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+    bottom: -5%;
+    left: 41%;
+  }
+}
+
+@media (max-width: 700px) {
+  .Leader-crown {
+    position: absolute;
+    top: -19%;
+    left: 38%;
+    width: 30px;
+  }
+
+  #Leader-1 .Leader-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .Leader-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .Leader-name {
+    font-size: 1rem;
+  }
+
+  .Leader-rank {
+    width: 25px;
+    height: 25px;
+    font-size: 0.8rem;
+    bottom: -5%;
+    left: 39%;
+  }
+}

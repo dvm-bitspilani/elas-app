@@ -1,0 +1,22 @@
+.LeaderboardEntry {
+  box-sizing: border-box;
+  display: flex;
+  width: 35vw;
+  justify-content: space-between;
+  padding: 15px 20px;
+  margin: 20px auto;
+  background-color: #18192C;
+  border-radius: 8px;
+}
+
+@media (max-width: 1200px) {
+  .LeaderboardEntry {
+    width: 45vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .LeaderboardEntry {
+    width: 70vw;
+  }
+}
