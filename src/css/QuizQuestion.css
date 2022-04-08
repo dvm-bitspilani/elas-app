@@ -14,7 +14,7 @@
 body {
     background: radial-gradient(216.76% 98.81% at 100% 1.19%, #1B1E35 0%, #1A1D3D 6.16%, #07091B 29.52%, #04050E 100%) no-repeat;
     font-family: 'SF Pro';
-    height: 100vh;
+    /* height: 100vh; */
 
 }
 
@@ -43,7 +43,14 @@ body {
     font-size: 1em;
     width: 80%;
     margin: 1.5em auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
 }
+
 
 .options {
     display: flex;
@@ -80,4 +87,10 @@ body {
     width: 60%;
     margin: 3em auto;
     padding: 1.5em 2em;
+}
+#questionImage {
+    width: 100%;
+}
+.QuizQuestionWrapper {
+    height: 100vh;
 }

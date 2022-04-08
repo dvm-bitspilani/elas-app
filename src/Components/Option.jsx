@@ -6,9 +6,9 @@ export default function Option(props) {
         <div className="OptionWrapper">
             <div className="options">
 
-                {props.options.map((answerOption) => (
-                    <button className="opt" id={`button${answerOption.option_id}`}
-                        onClick={() => props.handleAnswerOptionClick(answerOption.option_id)}
+                {props.options.map((answerOption, index) => (
+                    <button className="opt" id={`button${index}`}
+                        onClick={() => props.handleAnswerOptionClick(index, answerOption.option_id)}
                     >
                         {answerOption.content}
                     </button>

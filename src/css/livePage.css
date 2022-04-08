@@ -13,7 +13,7 @@
     color: white;
   }
   body {
-    height: 100vh;
+    /* height: 100vh; */
     background: radial-gradient(
       216.76% 98.81% at 100% 1.19%,
       #1b1e35 0%,
