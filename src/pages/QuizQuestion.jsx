@@ -21,13 +21,13 @@ export default function QuizQuestion() {
         }
     }, [isNavigate, navigate])
 
-    const handleAnswerOptionClick = (index) => {
-        for (var i = 1; i < options.length + 1; i++) {
+    const handleAnswerOptionClick = (index, option_id) => {
+        for (var i = 0; i < options.length ; i++) {
             document.getElementById(`button${i}`).classList.remove("selected");
         }
         document.getElementById(`button${index}`).classList.add("selected");
-        console.log("option chosen", index);
-        setSelectedOption(index);
+        console.log("option chosen", option_id);
+        setSelectedOption(option_id);
     };
     function secondsToHms(d) {
         d = Number(d);
