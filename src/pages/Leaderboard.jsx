@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Leader from "../Components/Leader";
 import LeaderboardEntry from "../Components/LeaderboardEntry";
 import "../css/LeaderBoard.css";

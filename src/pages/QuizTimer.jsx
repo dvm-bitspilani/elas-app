@@ -22,30 +22,30 @@ export default function QuizTimer() {
     }
     useEffect(() => {
         if(isNavigateError){
-            navigate('/NotLoggedIn');
+            // navigate('/NotLoggedIn');
         }
 
 
         (async () => {
-            await fetch("https://test.bits-apogee.org/elasquiz/create_member", {
-                headers: {
-                    "content-type": "application/json",
-                    'Authorization': `Bearer ${jwt}`
-                },
-                method: "GET",
-                mode: "cors",
-            })
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (result) {
-                    console.log(result);
-                })
-                .catch(error => {
-                    console.log(error);
-                    setIsNavigateError(prev => prev = !prev)
+            // await fetch("https://test.bits-apogee.org/elasquiz/create_member", {
+            //     headers: {
+            //         "content-type": "application/json",
+            //         'Authorization': `Bearer ${jwt}`
+            //     },
+            //     method: "GET",
+            //     mode: "cors",
+            // })
+            //     .then(function (response) {
+            //         return response.json();
+            //     })
+            //     .then(function (result) {
+            //         console.log(result);
+            //     })
+            //     .catch(error => {
+            //         console.log(error);
+            //         setIsNavigateError(prev => prev = !prev)
 
-                });
+            //     });
             await fetch("https://test.bits-apogee.org/elasquiz/get_question", {
                 headers: { "content-type": "application/json" },
                 method: "GET",
@@ -56,7 +56,7 @@ export default function QuizTimer() {
                 })
                 .then(function (result) {
                     if (result.error) {
-                        alert(result.error);
+                        // alert(result.error);
                         setTimeRemaining(result.time_remaining);
                     }
                     else {
@@ -89,18 +89,22 @@ export default function QuizTimer() {
     // let TimeLeft = secondsToHms(TimeRemaining);
     return (
         <div className="QuizTimerWrapper">
-            <div class="top">
+            <div class="topQuizTimer">
                 {/* <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20" fill="none">
                     <path
                         d="M0.119999 10.57C0.191391 10.7541 0.298441 10.9223 0.435001 11.065L7.935 18.565C8.07486 18.7048 8.24089 18.8158 8.42363 18.8915C8.60636 18.9671 8.80221 19.0061 9 19.0061C9.39945 19.0061 9.78254 18.8474 10.065 18.565C10.2049 18.4251 10.3158 18.2591 10.3915 18.0763C10.4672 17.8936 10.5061 17.6978 10.5061 17.5C10.5061 17.1005 10.3475 16.7174 10.065 16.435L5.115 11.5L16.5 11.5C16.8978 11.5 17.2794 11.3419 17.5607 11.0606C17.842 10.7793 18 10.3978 18 9.99996C18 9.60214 17.842 9.22061 17.5607 8.93931C17.2794 8.658 16.8978 8.49996 16.5 8.49996L5.115 8.49996L10.065 3.56496C10.2056 3.42552 10.3172 3.25962 10.3933 3.07683C10.4695 2.89404 10.5087 2.69798 10.5087 2.49997C10.5087 2.30195 10.4695 2.10589 10.3933 1.9231C10.3172 1.74031 10.2056 1.57441 10.065 1.43497C9.92556 1.29437 9.75965 1.18278 9.57687 1.10663C9.39408 1.03047 9.19802 0.991268 9 0.991268C8.80198 0.991268 8.60592 1.03047 8.42313 1.10663C8.24035 1.18278 8.07444 1.29437 7.935 1.43497L0.435001 8.93497C0.298441 9.07762 0.191391 9.24584 0.119999 9.42997C-0.0300274 9.79516 -0.0300274 10.2048 0.119999 10.57Z"
                         fill="#DADADC" />
                 </svg> */}
-                ELAS Quiz
+                APOGEE Trivia Challenge
                 {/* <svg class="arrow2" xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20" fill="none">
                     <path
                         d="M0.119999 10.57C0.191391 10.7541 0.298441 10.9223 0.435001 11.065L7.935 18.565C8.07486 18.7048 8.24089 18.8158 8.42363 18.8915C8.60636 18.9671 8.80221 19.0061 9 19.0061C9.39945 19.0061 9.78254 18.8474 10.065 18.565C10.2049 18.4251 10.3158 18.2591 10.3915 18.0763C10.4672 17.8936 10.5061 17.6978 10.5061 17.5C10.5061 17.1005 10.3475 16.7174 10.065 16.435L5.115 11.5L16.5 11.5C16.8978 11.5 17.2794 11.3419 17.5607 11.0606C17.842 10.7793 18 10.3978 18 9.99996C18 9.60214 17.842 9.22061 17.5607 8.93931C17.2794 8.658 16.8978 8.49996 16.5 8.49996L5.115 8.49996L10.065 3.56496C10.2056 3.42552 10.3172 3.25962 10.3933 3.07683C10.4695 2.89404 10.5087 2.69798 10.5087 2.49997C10.5087 2.30195 10.4695 2.10589 10.3933 1.9231C10.3172 1.74031 10.2056 1.57441 10.065 1.43497C9.92556 1.29437 9.75965 1.18278 9.57687 1.10663C9.39408 1.03047 9.19802 0.991268 9 0.991268C8.80198 0.991268 8.60592 1.03047 8.42313 1.10663C8.24035 1.18278 8.07444 1.29437 7.935 1.43497L0.435001 8.93497C0.298441 9.07762 0.191391 9.24584 0.119999 9.42997C-0.0300274 9.79516 -0.0300274 10.2048 0.119999 10.57Z"
                         fill="#DADADC" />
                 </svg> */}
+            </div>
+            <div className="bottom">
+            <img id="questionImageQuizTimer" src={require('../assets/Logo.jpeg')} alt="Image" srcset="" />
+
             </div>
             <div class="content">
                 {showStartQuiz ?

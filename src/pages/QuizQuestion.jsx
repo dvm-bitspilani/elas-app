@@ -141,6 +141,7 @@ export default function QuizQuestion() {
                         console.log(result.options)
                         setOptions(result.options)
                         console.log(parseInt(result.attempt_time));
+                        localStorage.setItem("question_id",result.question_id);
                         // console.log("DATE", result.start_date_time.split("-"));
                         // console.log(new Date("2022-04-05T21:29:38.770").getTime());
                         time.setSeconds(time.getSeconds() + parseInt(result.attempt_time));
@@ -156,41 +157,41 @@ export default function QuizQuestion() {
 
                     }
                 }).catch((err) => {
-                    // console.log("API ERROR", err);
-                    // const staticQuestion = [
-                    //     {
-                    //         question: "Static Question",
-                    //         question_id: "1",
-                    //         image_url: "https://www.poynter.org/wp-content/uploads/2021/09/shutterstock_1563012205.png",
-                    //         attempt_time: 5,
-                    //     }
-                    // ]
-                    // const staticOptions = [
-                    //     {
-                    //         option_id: 1,
-                    //         content: "Option1"
-                    //     },
-                    //     {
-                    //         option_id: 2,
-                    //         content: "Option2"
-                    //     },
-                    //     {
-                    //         option_id: 3,
-                    //         content: "Option3"
-                    //     },
-                    //     {
-                    //         option_id: 4,
-                    //         content: "Option4"
-                    //     },
-                    // ]
-                    // setOptions(staticOptions);
-                    // setQuestion(staticQuestion[0]);
-                    // setQuestionTimeRemaining(staticQuestion[0].attempt_time);
-                    // time.setSeconds(time.getSeconds() + staticQuestion[0].attempt_time)
-                    // setQuestionExpiry(time);
-                    // console.log()
-                    // console.log(questionTimeRemaining);
-                    // // console.log(options);
+                    console.log("API ERROR", err);
+                    const staticQuestion = [
+                        {
+                            question: "Static Question",
+                            question_id: "1",
+                            image_url: "https://www.poynter.org/wp-content/uploads/2021/09/shutterstock_1563012205.png",
+                            attempt_time: 5,
+                        }
+                    ]
+                    const staticOptions = [
+                        {
+                            option_id: 1,
+                            content: "Option1"
+                        },
+                        {
+                            option_id: 2,
+                            content: "Option2"
+                        },
+                        {
+                            option_id: 3,
+                            content: "Option3"
+                        },
+                        {
+                            option_id: 4,
+                            content: "Option4"
+                        },
+                    ]
+                    setOptions(staticOptions);
+                    setQuestion(staticQuestion[0]);
+                    setQuestionTimeRemaining(staticQuestion[0].attempt_time);
+                    time.setSeconds(time.getSeconds() + staticQuestion[0].attempt_time)
+                    setQuestionExpiry(time);
+                    console.log()
+                    console.log(questionTimeRemaining);
+                    // console.log(options);
 
                 });
         })()
@@ -206,7 +207,7 @@ export default function QuizQuestion() {
             </div>
             <div class="content">
                 <div className="img">
-                    <img id="questionImage" src={question.image_url} alt="Image" srcset="" />
+                    <img id="questionImage" src={require('../assets/Logo.jpeg')} alt="Image" srcset="" />
                 </div>
                 {question.question}
             </div>

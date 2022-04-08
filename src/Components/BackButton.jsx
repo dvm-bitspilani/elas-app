@@ -4,7 +4,7 @@ export default function BackButton() {
     let navigate = useNavigate();
     return (
         <div onClick={()=>{
-            navigate(-2);
+            navigate(-1);
         }} className="BackButtonWrapper">
             <img src={require("../assets/Vector.png")} alt="" />
         </div>

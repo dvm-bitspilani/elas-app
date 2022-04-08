@@ -10,6 +10,8 @@ import QuizTimer from "./pages/QuizTimer.jsx";
 import QuizQuestion from "./pages/QuizQuestion.jsx";
 import QuizOver from "./pages/QuizOver.jsx";
 import Leaderboard from "./pages/Leaderboard";
+import GameShowLeaderboard from "./pages/GameShowLeaderboard";
+import PrelimsLeaderboard from "./pages/PrelimsLeaderboard";
 
 export default function App() {
   return (
@@ -23,6 +25,8 @@ export default function App() {
 
      
         <Route path="/Leaderboard" element={<Leaderboard />} />
+        <Route path="/GameShowLeaderboard" element={<GameShowLeaderboard />} />
+        <Route path="/PrelimsLeaderboard" element={<PrelimsLeaderboard />} />
 
         {/* <Route path="/LivePage" element={<LivePage />} /> */}
 

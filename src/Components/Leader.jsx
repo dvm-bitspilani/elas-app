@@ -12,7 +12,7 @@ export default function Leader(props) {
           style={{ display: props.rank === 1 ? "block" : "none" }}
         />
         <img
-          src={props.img}
+          src={require('../assets/userImage.png')}
           alt={props.name}
           className="Leader-img"
           style={{ borderColor: props.color }}

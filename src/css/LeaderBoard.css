@@ -1,10 +1,11 @@
 .Leaderboard {
   font-family: "SF Pro";
+  height: 100vh;
 }
 
 .Leaderboard-heading {
-  padding-top: 20px;
-  font-size: 4rem;
+  /* padding-top: 20px; */
+  font-size: 2rem;
   text-align: center;
 }
 
@@ -58,7 +59,7 @@
 
 @media (max-width: 700px) {
   .Leaderboard-heading {
-    font-size: 2rem;
+    font-size: 24px;
   }
 
   .Leaderboard-rank-cont {
@@ -74,4 +75,13 @@
   .Leaderboard-entries {
     height: 50vh;
   }
+}
+.LeaderboardTop {
+  display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
 }
