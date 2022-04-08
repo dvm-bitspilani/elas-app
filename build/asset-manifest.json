@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.75705c19.chunk.css",
-    "main.js": "/static/js/main.7f05f805.chunk.js",
-    "main.js.map": "/static/js/main.7f05f805.chunk.js.map",
+    "main.css": "/static/css/main.5dc14189.chunk.css",
+    "main.js": "/static/js/main.37d405e3.chunk.js",
+    "main.js.map": "/static/js/main.37d405e3.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fda65720.js",
     "runtime-main.js.map": "/static/js/runtime-main.fda65720.js.map",
-    "static/js/2.ca5087c9.chunk.js": "/static/js/2.ca5087c9.chunk.js",
-    "static/js/2.ca5087c9.chunk.js.map": "/static/js/2.ca5087c9.chunk.js.map",
+    "static/js/2.08c42963.chunk.js": "/static/js/2.08c42963.chunk.js",
+    "static/js/2.08c42963.chunk.js.map": "/static/js/2.08c42963.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.a282cc33b463c9b01e12a0cc135540cb.js": "/precache-manifest.a282cc33b463c9b01e12a0cc135540cb.js",
+    "precache-manifest.64e7890ff122d8c81011d3976b8140bd.js": "/precache-manifest.64e7890ff122d8c81011d3976b8140bd.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.75705c19.chunk.css.map": "/static/css/main.75705c19.chunk.css.map",
-    "static/js/2.ca5087c9.chunk.js.LICENSE.txt": "/static/js/2.ca5087c9.chunk.js.LICENSE.txt",
+    "static/css/main.5dc14189.chunk.css.map": "/static/css/main.5dc14189.chunk.css.map",
+    "static/js/2.08c42963.chunk.js.LICENSE.txt": "/static/js/2.08c42963.chunk.js.LICENSE.txt",
     "static/media/QuizQuestion.css": "/static/media/SF-Pro-Text-Semibold.9a7c849b.otf",
     "static/media/livePage.css": "/static/media/SFProText-Regular.85bd46c1.ttf",
     "static/media/background.png": "/static/media/background.d3d97745.png"
   },
   "entrypoints": [
     "static/js/runtime-main.fda65720.js",
-    "static/js/2.ca5087c9.chunk.js",
-    "static/css/main.75705c19.chunk.css",
-    "static/js/main.7f05f805.chunk.js"
+    "static/js/2.08c42963.chunk.js",
+    "static/css/main.5dc14189.chunk.css",
+    "static/js/main.37d405e3.chunk.js"
   ]
 }
