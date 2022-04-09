@@ -56,7 +56,7 @@ export default function QuizTimer() {
                 })
                 .then(function (result) {
                     if (result.error) {
-                        // alert(result.error);
+                        alert(result.error);
                         setTimeRemaining(result.time_remaining);
                     }
                     else {
@@ -117,8 +117,9 @@ export default function QuizTimer() {
                     </div>
                     :
                     <div className="QuizHeading">
-                        <h2>The quiz will start in:</h2>
-                        <QuizTimerComponent onTimerExpiry={handleExpiry} expiryTimestamp={TimeRemaining} />
+                        <h2>The quiz is</h2>
+                        <div className="TimerQuiz">NOT LIVE</div>
+                        {/* <QuizTimerComponent onTimerExpiry={handleExpiry} expiryTimestamp={TimeRemaining} /> */}
                     </div>
                 }
                 <svg class="bg-image" xmlns="http://www.w3.org/2000/svg" width="248" height="248" viewBox="0 0 248 248" fill="none">

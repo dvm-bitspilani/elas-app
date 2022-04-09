@@ -13,13 +13,17 @@ export default function QuizQuestion() {
     const [questionTimeRemaining, setQuestionTimeRemaining] = useState(0);
     const [initialTime, setInitialTime] = useState(new Date());
     const [isNavigate, setIsNavigate] = useState(false);
+    const [isNavigateHome, setIsNavigateHome] = useState(false);
 
     useEffect(() => {
 
         if (isNavigate) {
             navigate('/SubmitPage')
         }
-    }, [isNavigate, navigate])
+        if (isNavigateHome) {
+            navigate('/SubmitPage');
+        }
+    }, [isNavigate, navigate, isNavigateHome]);
 
     const handleAnswerOptionClick = (index, option_id) => {
         for (var i = 0; i < options.length; i++) {
@@ -125,7 +129,7 @@ export default function QuizQuestion() {
     const [question, setQuestion] = useState([]);
     const [options, setOptions] = useState([]);
     const time = new Date();
-    time.setSeconds(time.getSeconds() + 10); // 10 minutes timer
+    time.setSeconds(time.getSeconds() + 600); // 10 minutes timer
     const [questionExpiry, setQuestionExpiry] = useState(time);
     useEffect(() => {
         (async () => {
@@ -157,7 +161,7 @@ export default function QuizQuestion() {
                     }
                     else {
                         alert(result.error);
-
+                        setIsNavigateHome(prev => prev = !prev);
                     }
                 }).catch((err) => {
                     console.log("API ERROR", err);
