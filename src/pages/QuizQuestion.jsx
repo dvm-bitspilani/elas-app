@@ -9,7 +9,7 @@ import QuestionTimer from "../Components/QuestionTimer.jsx"
 export default function QuizQuestion() {
     let navigate = useNavigate();
     const [start, setStart] = useState(true);
-    const [selectedOption, setSelectedOption] = useState(1);
+    const [selectedOption, setSelectedOption] = useState(0);
     const [questionTimeRemaining, setQuestionTimeRemaining] = useState(0);
     const [initialTime, setInitialTime] = useState(new Date());
     const [isNavigate, setIsNavigate] = useState(false);
@@ -22,7 +22,7 @@ export default function QuizQuestion() {
     }, [isNavigate, navigate])
 
     const handleAnswerOptionClick = (index, option_id) => {
-        for (var i = 0; i < options.length ; i++) {
+        for (var i = 0; i < options.length; i++) {
             document.getElementById(`button${i}`).classList.remove("selected");
         }
         document.getElementById(`button${index}`).classList.add("selected");
@@ -52,7 +52,7 @@ export default function QuizQuestion() {
         console.log(submission);
         console.log(currentTime, initialTime, time_taken);
         let jwt = localStorage.getItem('jwt')
-        await fetch("https://test.bits-apogee.org/elasquiz/post_answer/", {
+        await fetch("https://bits-apogee.org/elasquiz/post_answer/", {
             headers: { "content-type": "application/json", 'Authorization': `Bearer ${jwt}` },
             method: "POST",
             body: JSON.stringify(submission),
@@ -75,9 +75,12 @@ export default function QuizQuestion() {
                 }
                 else {
                     alert(result.error);
+                    setIsNavigate(prev => prev = !prev);
                 }
             }).catch((err) => {
                 console.log(err);
+                
+                alert("No Option Selected");
                 setIsNavigate(prev => prev = !prev);
             })
     }
@@ -122,11 +125,11 @@ export default function QuizQuestion() {
     const [question, setQuestion] = useState([]);
     const [options, setOptions] = useState([]);
     const time = new Date();
-    time.setSeconds(time.getSeconds() + questionTimeRemaining); // 10 minutes timer
+    time.setSeconds(time.getSeconds() + 10); // 10 minutes timer
     const [questionExpiry, setQuestionExpiry] = useState(time);
     useEffect(() => {
         (async () => {
-            await fetch("https://test.bits-apogee.org/elasquiz/get_question", {
+            await fetch("https://bits-apogee.org/elasquiz/get_question", {
                 headers: { "content-type": "application/json" },
                 method: "GET",
                 mode: "cors",
@@ -141,10 +144,10 @@ export default function QuizQuestion() {
                         console.log(result.options)
                         setOptions(result.options)
                         console.log(parseInt(result.attempt_time));
-                        localStorage.setItem("question_id",result.question_id);
+                        localStorage.setItem("question_id", result.question_id);
                         // console.log("DATE", result.start_date_time.split("-"));
                         // console.log(new Date("2022-04-05T21:29:38.770").getTime());
-                        time.setSeconds(time.getSeconds() + parseInt(result.attempt_time));
+                        // time.setSeconds(time.getSeconds() + parseInt(result.attempt_time));
                         console.log(time);
                         setQuestionExpiry(time);
                         // setQuestionExpiry(result.attempt_time);

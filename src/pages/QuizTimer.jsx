@@ -21,32 +21,32 @@ export default function QuizTimer() {
         navigate('/QuizQuestion');
     }
     useEffect(() => {
-        if(isNavigateError){
-            // navigate('/NotLoggedIn');
+        if (isNavigateError) {
+            navigate('/NotLoggedIn');
         }
 
 
         (async () => {
-            // await fetch("https://test.bits-apogee.org/elasquiz/create_member", {
-            //     headers: {
-            //         "content-type": "application/json",
-            //         'Authorization': `Bearer ${jwt}`
-            //     },
-            //     method: "GET",
-            //     mode: "cors",
-            // })
-            //     .then(function (response) {
-            //         return response.json();
-            //     })
-            //     .then(function (result) {
-            //         console.log(result);
-            //     })
-            //     .catch(error => {
-            //         console.log(error);
-            //         setIsNavigateError(prev => prev = !prev)
+            await fetch("https://bits-apogee.org/elasquiz/create_member", {
+                headers: {
+                    "content-type": "application/json",
+                    'Authorization': `Bearer ${jwt}`
+                },
+                method: "GET",
+                mode: "cors",
+            })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (result) {
+                    console.log(result);
+                })
+                .catch(error => {
+                    console.log(error);
+                    setIsNavigateError(prev => prev = !prev)
 
-            //     });
-            await fetch("https://test.bits-apogee.org/elasquiz/get_question", {
+                });
+            await fetch("https://bits-apogee.org/elasquiz/get_question", {
                 headers: { "content-type": "application/json" },
                 method: "GET",
                 mode: "cors",
@@ -65,6 +65,7 @@ export default function QuizTimer() {
                 })
                 .catch((err) => {
                     console.log(err);
+                    setIsNavigateError(prev => prev = !prev);
                     // time.setSeconds(time.getSeconds() + 5)
                     // setTimeRemaining(time);
                 });
@@ -74,7 +75,7 @@ export default function QuizTimer() {
 
 
 
-    }, [setTimeRemaining,isNavigateError]);
+    }, [setTimeRemaining, isNavigateError]);
     function secondsToHms(d) {
         d = Number(d);
         var h = Math.floor(d / 3600);
@@ -103,7 +104,7 @@ export default function QuizTimer() {
                 </svg> */}
             </div>
             <div className="bottom">
-            <img id="questionImageQuizTimer" src={require('../assets/Logo.jpeg')} alt="Image" srcset="" />
+                <img id="questionImageQuizTimer" src={require('../assets/Logo.jpeg')} alt="Image" srcset="" />
 
             </div>
             <div class="content">

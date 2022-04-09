@@ -15,13 +15,13 @@ export default function SubmitPage() {
 
     const handleGameShowLeaderboard = () => {
         console.log("LEADERBOARD");
-            setIsNavigateGameShow(prev => prev = !prev);
-            // setIsNavigatePrelims(prev => prev = !prev);
+        setIsNavigateGameShow(prev => prev = !prev);
+        // setIsNavigatePrelims(prev => prev = !prev);
     }
     const handlePrelimsLeaderboard = () => {
         console.log("LEADERBOARD");
-            // setIsNavigateGameShow(prev => prev = !prev);
-            setIsNavigatePrelims(prev => prev = !prev);
+        // setIsNavigateGameShow(prev => prev = !prev);
+        setIsNavigatePrelims(prev => prev = !prev);
     }
     const handleExpiry = () => {
         console.log("expired");
@@ -41,7 +41,7 @@ export default function SubmitPage() {
             // navigate('/QuizQuestion')
         }
         (async () => {
-            await fetch("https://test.bits-apogee.org/elasquiz/get_question", {
+            await fetch("https://bits-apogee.org/elasquiz/get_question", {
                 headers: { "content-type": "application/json" },
                 method: "GET",
                 mode: "cors",
@@ -70,13 +70,13 @@ export default function SubmitPage() {
             <div class="content">
                 <div class="text">Thanks for submitting</div>
                 <div className="buttons">
-                <div class="leaderboardBtn" onClick={handleGameShowLeaderboard}>
-                   Gameshow Leaderboard
-                </div>
-                <div class="leaderboardBtn" onClick={handlePrelimsLeaderboard}>
-                    Prelims Leaderboard
-                </div>
-                {/* <div class="text">Next quiz will be at <QuizTimerComponent onTimerExpiry={handleExpiry} expiryTimestamp={TimeRemaining} /></div> */}
+                    {/* <div class="leaderboardBtn" onClick={handleGameShowLeaderboard}>
+                        Gameshow Leaderboard
+                    </div> */}
+                    <div class="leaderboardBtn" onClick={handlePrelimsLeaderboard}>
+                        Prelims Leaderboard
+                    </div>
+                    {/* <div class="text">Next quiz will be at <QuizTimerComponent onTimerExpiry={handleExpiry} expiryTimestamp={TimeRemaining} /></div> */}
                 </div>
             </div>
             <img class="bgImg" src={require("../assets/background.png")} alt=""></img>

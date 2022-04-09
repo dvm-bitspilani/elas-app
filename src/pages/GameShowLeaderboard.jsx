@@ -40,7 +40,7 @@ export default function GameShowLeaderboard() {
   useEffect(() => {
     (async () => {
 
-        await fetch("https://test.bits-apogee.org/elasquiz/game_show_leaderboard", {
+        await fetch("https://bits-apogee.org/elasquiz/game_show_leaderboard", {
             headers: { "content-type": "application/json" },
             method: "GET",
             mode: "cors",
