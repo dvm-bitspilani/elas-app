@@ -22,7 +22,8 @@ function QuizTimerComponent({ expiryTimestamp, onTimerExpiry }) {
   return (
     <div className="QuizTimerComponentWrapper">
       <div className="TimerQuiz">
-        <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
+        {days?<span>{days} day </span>: ''}
+        <span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
       </div>
     </div>
   );

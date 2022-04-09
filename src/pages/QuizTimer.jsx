@@ -57,7 +57,22 @@ export default function QuizTimer() {
                 .then(function (result) {
                     if (result.error) {
                         alert(result.error);
-                        setTimeRemaining(result.time_remaining);
+                        const currentDate = new Date();
+                        const tomorrowDate = new Date();
+                        tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+                        tomorrowDate.setHours(14,0,0);
+                        const deadline = new Date();
+                        deadline.setHours(14,0,0);
+                        if(deadline>=currentDate){
+                            const difference = (deadline-currentDate)/1000;
+                            time.setSeconds(time.getSeconds() + difference);
+                        }
+                        else{
+                            const difference = (tomorrowDate-currentDate)/1000;
+                            time.setSeconds(time.getSeconds() + difference);
+                        }
+                        // console.log(deadline, difference);
+                        setTimeRemaining(time);
                     }
                     else {
                         setShowStartQuiz(prev => prev = !prev);
@@ -117,9 +132,9 @@ export default function QuizTimer() {
                     </div>
                     :
                     <div className="QuizHeading">
-                        <h2>The quiz is</h2>
-                        <div className="TimerQuiz">NOT LIVE</div>
-                        {/* <QuizTimerComponent onTimerExpiry={handleExpiry} expiryTimestamp={TimeRemaining} /> */}
+                        <h2>The quiz will be live in</h2>
+                        {/* <div className="TimerQuiz">NOT LIVE</div> */}
+                        <QuizTimerComponent onTimerExpiry={handleExpiry} expiryTimestamp={TimeRemaining} />
                     </div>
                 }
                 <svg class="bg-image" xmlns="http://www.w3.org/2000/svg" width="248" height="248" viewBox="0 0 248 248" fill="none">
